@@ -2,11 +2,20 @@
   "name": "barb",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/scripts/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape src/server.js | tap-spec",
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.1"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
