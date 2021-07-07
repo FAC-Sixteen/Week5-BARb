@@ -1,4 +1,6 @@
-const button = document.getElementsByTagName('button');
+const buttons = document.getElementsByClassName('borough');
+let display = document.querySelector(".display");
+let result = document.querySelector(".result");
 
 // document.onreadystatechange = function() {
 //   if (document.readyState === 'complete') {
@@ -15,18 +17,24 @@ const button = document.getElementsByTagName('button');
 //   }
 // };
 
-lambeth.addEventListener('click', () => {
+for (let i = 0; i < buttons.length; i++) {
+
+buttons[i].addEventListener('click', () => {
+  result.textContent = "";
+  console.log("Hello");
   let xhr = new XMLHttpRequest();
-  let value = button[0].id;
+  let value = buttons[i].id;
   console.log(value);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const data = JSON.parse(xhr.responseText);
-      let sum = data.reduce((a, b) => a + b, 0);
-      console.log(sum);
+      result.textContent = `${value}` + "'s Air Quality Index today is: " + data;
+
+      console.log(data);
     }
   };
 
   xhr.open('GET', `/GroupName=${value}`, true);
   xhr.send();
 });
+}
